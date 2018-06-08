@@ -36,7 +36,61 @@ public class RoomSpawner : MonoBehaviour {
 	}
 	void OnTriggerEnter2D(Collider2D other){
 		if (other.CompareTag ("SpawnPoint")) {
-			Destroy (gameObject);
+			if (!other.GetComponent<RoomSpawner> ().spawned && !spawned) {
+				Debug.Log ("Se encontro coincidencia");
+				Destroy (gameObject);
+				Instantiate (templates.block,transform.position,Quaternion.identity);
+				/*if (openingDirection == 1) {
+					Debug.Log ("Se necesita bottom");
+					if (other.GetComponent<RoomSpawner> ().openingDirection == 2) {
+						//Gen TB
+						Instantiate(templates.TB,transform.position,Quaternion.identity);
+					} else if (other.GetComponent<RoomSpawner> ().openingDirection == 3) {
+						//Gen BL
+						Instantiate(templates.BL,transform.position,Quaternion.identity);
+					} else if (other.GetComponent<RoomSpawner> ().openingDirection == 4) {
+						//Gen RB
+						Instantiate(templates.RB,transform.position,Quaternion.identity);
+					}
+				} else if (openingDirection == 2) {
+					Debug.Log ("Se necesita top");
+					if (other.GetComponent<RoomSpawner> ().openingDirection == 1) {
+						//Gen TB
+						Instantiate(templates.TB,transform.position,Quaternion.identity);
+					} else if (other.GetComponent<RoomSpawner> ().openingDirection == 3) {
+						//Gen TL
+						Instantiate(templates.TL,transform.position,Quaternion.identity);
+					} else if (other.GetComponent<RoomSpawner> ().openingDirection == 4) {
+						//Gen TR
+						Instantiate(templates.TR,transform.position,Quaternion.identity);
+					}
+				} else if (openingDirection == 3) {
+					Debug.Log ("Se necesita left");
+					if (other.GetComponent<RoomSpawner> ().openingDirection == 1) {
+						//Gen BL
+						Instantiate(templates.BL,transform.position,Quaternion.identity);
+					} else if (other.GetComponent<RoomSpawner> ().openingDirection == 2) {
+						//Gen TL
+						Instantiate(templates.TL,transform.position,Quaternion.identity);
+					} else if (other.GetComponent<RoomSpawner> ().openingDirection == 4) {
+						//Gen RL
+						Instantiate(templates.RL,transform.position,Quaternion.identity);
+					}
+				} else if (openingDirection == 4) {
+					Debug.Log ("Se necesita right");
+					if (other.GetComponent<RoomSpawner> ().openingDirection == 1) {
+						//Gen RB
+						Instantiate(templates.RB,transform.position,Quaternion.identity);
+					} else if (other.GetComponent<RoomSpawner> ().openingDirection == 2) {
+						//Gen TR
+						Instantiate(templates.TR,transform.position,Quaternion.identity);
+					} else if (other.GetComponent<RoomSpawner> ().openingDirection == 3) {
+						//Gen RL
+						Instantiate(templates.RL,transform.position,Quaternion.identity);
+					}
+				}*/
+			}//END if !spawned && !other.spawned
+			spawned = true;
 		}
 	}
 }
